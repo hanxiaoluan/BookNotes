@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        "use strict";
+        window.onload = function () {
+            // 原始类型的变量直接保存原始值（而不是一个指向对象的指针）。当你将原始值赋给一个变量时，该值将被复制到变量中。也就是说，如果你使一个变量等于另一个时，每个变量都有自己的一份数据拷贝。
+
+            // 鉴别原始类型使用typeof 操作符，注意判断null时不能用typeof因为返回的是object，应该用value===null
+            // ==在进行比较时不会将变量强制转换为另一个类型
+            console.log('5' == 5);
+            console.log('5' === 5);
+            console.log(undefined == null);
+            console.log(undefined === null);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
