@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 400px;
+            height: 200px;
+            /*     background: blue; */
+            position: relative;
+        }
+
+        .left,
+        .right {
+            width: 50%;
+            height: 100%;
+            background: #000;
+            opacity: .5;
+            position: absolute;
+        }
+
+        .left {
+            left: 0;
+            top: 0;
+        }
+
+        .right {
+            right: 0;
+            top: 0;
+        }
+        .goon-enter-active,.goon-leave-active{
+            transition: .5s;
+        }
+        .goon-enter,.goon-leave-to{
+            transform: translateX(-100px);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="box" id="box" @mouseover.self="toggle" @mouseleave="toggle2">
+        <p>栾晗霄大好人</p>
+        <transition name="goon" >
+            <div class="left" v-if="show"></div>
+        </transition>
+        <transition>
+            <div class="right"></div>
+        </transition>
+        <!-- <button @click="toggle">动画</button> -->
+    </div>
+    
+</body>
+
+</html>
+<script>
+    let vm = new Vue({
+        el: '#box',
+        data() {
+            return {
+                show:false
+            }
+        },
+        methods: {
+            toggle(){
+                this.show = !this.show;
+            },
+            toggle2(){
+                console.log(1);
+                this.show = !this.show;
+            }
+        },
+    })
+</script>
