@@ -77,7 +77,7 @@ console.log(person1 instanceof Person);//true
 console.log(person1.constructor === Person);//false
 
 console.log(person1.constructor === Object);//true
-/* 使用对象字面量形式改变构造函数的属性，因此他现在指向OBject而不是Person.这是因为原型对象具有一个constructor属性，这是其他对象实例不具备的，当一个函数被创建时，它拥有一个prototype属性和constructor属性，他的prototype属性是这个函数的原型对象，这个原型对象也有一个constructor属性，这个constructor属性在被创建时就指向该函数，但是你用字面量形式重写prototype相当于改写，他的constructor指向了泛用对象Object,为了避免这一点，需要在手写原型对象的时候改写 */
+/* 使用对象字面量形式改变构造函数的属性，因此他现在指向OBject而不是Person.这是因为原型对象具有一个constructor属性，这是其他对象实例不具备的，当一个函数被创建时，它拥有一个prototype属性属性，他的prototype属性是这个函数的原型对象，这个原型对象有一个constructor属性，这个constructor属性在被创建时就指向该函数，但是你用字面量形式重写prototype相当于改写，他的constructor指向了泛用对象Object,为了避免这一点，需要在手写原型对象的时候改写 */
 function Person(name) {
     this.name = name;
 }
