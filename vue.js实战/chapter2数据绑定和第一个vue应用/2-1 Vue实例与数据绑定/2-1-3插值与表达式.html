@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app">
+        <p>当前时间为：{{time}}</p>
+        <p v-html="link"></p>
+        <!-- 注意xss攻击，虽然咱也不懂啥是xss攻击 -->
+        <p v-pre>{{这里的内容是不会进行编译的}}</p>
+        <ul>
+            <li>{{num/100}}</li>
+            <li>{{isOk?"确定":"取消"}}</li>
+            <li>{{text.split(",").reverse().join(",")}}</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    let app = new Vue({
+        el:'#app',
+        data() {
+            return {
+                time:new Date(),
+                link:'<a href="#">这是一个链接</a>',
+                num:100,
+                isOk:true,
+                text:'123,456'
+            }
+        },
+        mounted() {
+            /* let newTime = new Date();
+            setInterval(() => {
+                newTime = new Date();
+                this.time = newTime;
+            }, 1000); */
+            let _this = this;
+            this.timer = setInterval(() => {
+                /* console.log(this);
+                console.log(_this); */
+                _this.time = new Date();
+            }, 1000);
+        },
+        beforeDestroy() {
+            if(this.timer){
+                clearInterval(this.timer);
+            }
+        },
+    })
+</script>

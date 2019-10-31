@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<body>
+    <div id="app">{{time|timerFilter}}</div>
+</body>
+
+</html>
+<script>
+   let padDate = (value)=>{
+       return value>9?value:`0${value}`;
+   }
+    let app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                time: new Date()
+            }
+        },
+        mounted() {
+            let _this=this;
+            this.timer = setInterval(() => {
+                _this.time = new Date();
+            }, 1000);
+        },
+        filters:{
+            timerFilter(time){
+                let year = time.getFullYear();
+                let month = padDate(time.getMonth()+1);
+                let day = padDate(time.getDate());
+                let hour = padDate(time.getHours());
+                let minute = padDate(time.getMinutes());
+                let second = padDate(time.getSeconds());
+                return `${year}年-${month}月-${day}日 ${hour}时-${minute}分-${second}秒`;
+            }
+        },
+        beforeDestroy() {
+            if(this.timer){
+                clearInterval(this.timer);
+            }
+        },
+         
+    })
+</script>
+<!-- 过滤器可以串联，也可以传递参数 -->
+
+<!-- 串联 -->
+<!-- {{message|filterA|filterB}} -->
+
+<!-- 接受参数 -->
+<!-- {{message|filterA(arg1,arg2)}} ,arg1和arg2就是传递的参数-->

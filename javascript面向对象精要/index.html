@@ -32,45 +32,72 @@
             right: 0;
             top: 0;
         }
-        .goon-enter-active,.goon-leave-active{
+
+        .goon-enter-active,
+        .goon-leave-active {
             transition: .5s;
         }
-        .goon-enter,.goon-leave-to{
+
+        .goon-enter,
+        .goon-leave-to {
             transform: translateX(-100px);
+        }
+
+        .goon2-enter-active,
+        .goon2-leave-active {
+            transition: .5s;
+        }
+
+        .goon2-enter,
+        .goon2-leave-to {
+            transform: translateX(100px);
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-    <div class="box" id="box" @mouseover.self="toggle" @mouseleave="toggle2">
-        <p>栾晗霄大好人</p>
-        <transition name="goon" >
-            <div class="left" v-if="show"></div>
-        </transition>
-        <transition>
-            <div class="right"></div>
-        </transition>
-        <!-- <button @click="toggle">动画</button> -->
+    <div id="app">
+        <div class="box" id="box" @mouseover.self="toggle" @mouseleave="toggle2">
+            <p>栾晗霄大好人</p>
+            <transition name="goon">
+                <div class="left" v-if="show"></div>
+            </transition>
+            <transition name="goon2">
+                <div class="right" v-if="show"></div>
+            </transition>
+            <!-- <button @click="toggle">动画</button> -->
+        </div>
+        <div class="box" id="box" @mouseover.self="toggle" @mouseleave="toggle2" style="">
+            <p>栾晗霄大好人</p>
+            <transition name="goon">
+                <div class="left" v-if="show"></div>
+            </transition>
+            <transition name="goon2">
+                <div class="right" v-if="show"></div>
+            </transition>
+            <!-- <button @click="toggle">动画</button> -->
+        </div>
     </div>
-    
+
+
 </body>
 
 </html>
 <script>
     let vm = new Vue({
-        el: '#box',
+        el: '#app',
         data() {
             return {
-                show:false
+                show: false
             }
         },
         methods: {
-            toggle(){
+            toggle() {
                 this.show = !this.show;
             },
-            toggle2(){
-                console.log(1);
+            toggle2() {
+
                 this.show = !this.show;
             }
         },

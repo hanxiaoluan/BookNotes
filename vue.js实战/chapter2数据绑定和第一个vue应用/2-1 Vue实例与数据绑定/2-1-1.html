@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+</html>
+<script>
+/* let app = new Vue({
+    el:document.querySelector("#app"),//#app
+    data() {
+        return {
+            a:2
+        }
+    },
+})
+console.log(app.a); */
+let myData = {
+    a:1
+};
+let app = new Vue({
+    el:document.querySelector("#app"),
+    data() {
+        return myData
+            
+        
+    },
+})
+console.log(app.a);
+app.a = 2;
+console.log(myData.a);
+myData.a = 3;
+console.log(app.a);
+</script>

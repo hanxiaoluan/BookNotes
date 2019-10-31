@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{total}}
+        <button>点击以下</button>
+    </div>
+    <div id="app2">
+        {{total2}}
+    </div>
+</body>
+
+</html>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data() {
+            return {
+                package1: [{
+                        name: "apple",
+                        price: 100,
+                        count: 2
+                    },
+                    {
+                        name: "banana",
+                        price: 20,
+                        count: 3
+                    }
+                ],
+                package2: [{
+                        name: "Mac",
+                        price: 10000,
+                        count: 4
+                    },
+                    {
+                        name: "Iphone",
+                        price: 800,
+                        count: 4
+                    }
+                ],
+                firstName: "Jack",
+                lastName: "Green"
+            }
+        },
+        computed: {
+            total() {
+                let _total = 0;
+                this.package1.map((item, index, array) => {
+                    _total += item.price * item.count;
+                });
+                this.package2.map((item, index, array) => {
+                    _total += item.price * item.count
+                });
+                return _total;
+            },
+            fullName: {
+                get: function () {
+                    let _total = 0;
+                    this.package1.map((item, index, array) => {
+                        _total += item.price * item.count;
+                    });
+                    this.package2.map((item, index, array) => {
+                        _total += item.price * item.count
+                    });
+                    return _total;
+                },
+                set: function (newValue) {
+                    alert(newValue);
+                    console.log(newValue);
+                }
+            }
+        },
+        /* methods: {
+            handleClick(){
+                this.total = 3;
+            }
+        }, */
+    })
+    app.fullName = 3;
+    let app2 = new Vue({
+        el:"#app2",
+        computed: {
+            total2(){
+                return app.fullName + 1;
+            }
+        },
+    })
+</script>
