@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" placeholder="请输入...." @input="handleInput">
+        <p>输入的内容是：{{message}}</p>
+        <input type="radio" :checked="picked" @click="picked=!picked">
+        <p>是否选中：{{picked?"是":"否"}}</p>
+
+        <!--radio input's usage  -->
+        <input type="radio" name="" v-model="something" value="html" id="html"><label for="html">HTML</label>
+        <input type="radio" id="js" value="js" v-model="something"><label for="js">javascript</label>
+        <input type="radio" id="css" value="css" v-model="something"><label for="css">css</label>
+        <p>选中的是:{{something}}</p>
+
+        <!-- 复选框的v-model的用法 -->
+        <input type="checkbox" name="" v-model="something2" value="html" id="html2"><label for="html">HTML</label>
+        <input type="checkbox" id="js2" value="js" v-model="something2"><label for="js">javascript</label>
+        <input type="checkbox" id="css2" value="css" v-model="something2"><label for="css">css</label>
+        <p>选中的是:{{something2.length?something2:""}}</p>
+
+        <!-- 选择列表 -->
+        <select name="" id="" v-model="selected">
+            <option>html</option>
+            <option value="js">javascript</option>
+            <option>css</option>
+        </select>
+        <p>选择的项是：{{selected}}</p>
+        <select name="" id="" v-model="selected2" multiple>
+            <option>html</option>
+            <option value="js">javascript</option>
+            <option>css</option>
+        </select>
+        <p>选择的项是：{{selected2}}</p>
+    </div>
+</body>
+
+</html>
+<script>
+    "use strict";
+    let app = new Vue({
+        el: "#app",
+        data() {
+            return {
+                message: "",
+                picked: true,
+                something: "js",
+                something2: [
+                    "html", "css"
+                ],
+                selected:"html",
+                selected2:["html","js"]
+            }
+        },
+        methods: {
+            handleInput(event) {
+                this.message = event.target.value;
+            }
+        },
+    })
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="./Shopcart.css">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+       <!-- <template v-if=“list.length”> -->
+            <table border="1" v-if="list.length">
+                <caption>Shopcart</caption>
+                <tr>
+                    <th v-for="(item, index) in thList" :key="index">{{item}}</th>
+                </tr>
+                <tr v-for="(item, index) in list" :key="index">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td><button @click="subtract(index)">-</button>{{item.count}}<button @click="add(index)">+</button></td>
+                    <td><button @click="handleRemove(index)">移除</button></td>
+                </tr>
+            </table>
+            <div class="total">总价：¥{{total}}</div>
+      <!--   </template> -->
+        <div v-else>购物车为空</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</body>
+
+</html>
+<script src="./Shopcart.js"></script>

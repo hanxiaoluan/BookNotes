@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <child></child>
+        <table>
+            <!-- <tbody>
+                <my-component></my-component>
+            </tbody> -->
+            <tbody is="my-component"></tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+<script>
+    let data = {
+        counter: 1
+    }
+    Vue.component("MyComponent", {
+        template: `<div>this is my first component.
+        <button @click="counter++">{{counter}}</button>
+        <button @click="counter++"> {{counter}}</button>
+        </div>
+        `,
+        data() {
+            /* return {
+                message: "luanhanxiao is a good man.",
+                ...data
+            }; */
+            return data;
+           // return JSON.parse(JSON.stringify(data));
+        },
+    })
+    let Child = {
+        template: `<div>this is a locally registered component.</div>`
+    }
+    let app = new Vue({
+        el: "#app",
+        components: {
+            "child": Child
+        }
+    })
+</script>

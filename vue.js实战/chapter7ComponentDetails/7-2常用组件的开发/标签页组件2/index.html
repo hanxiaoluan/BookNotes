@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        #app {
+            width: 400px;
+            height: 400px;
+            margin: 100px auto;
+        }
+
+        .title {
+            width: 100%;
+            height: 40px;
+            display: flex;
+        }
+
+        .nav {
+            width: 33.33%;
+            background: #cecece;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        .content {
+            height: 100%;
+            line-height: 100%;
+            text-align: center;
+            background: cornflowerblue;
+        }
+
+        .contain {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <tabs v-model="activeKey">
+            <pane label="标签一" :value="1" :closable="true">小白</pane>
+            <pane label="标签二" :value="2" :closable="true">是</pane>
+            <pane label="标签三" :value="3" :closable="true">大大大好人</pane>
+
+        </tabs>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let Tabs = {
+            template: `
+            <div class="contain">
+                <div class="title">
+                    <div
+                        class="nav"
+                        v-for="(item,index) in navList"
+                        @click="handleChange(index)"
+                    >{{item.label}}
+                    <button @click="closePane(index)" v-if="item.closable">开启/关闭</button>
+                    </div>
+                </div>
+                <div class="content">
+                    <slot></slot>
+                </div>
+            </div>
+            `,
+            props: {
+                value: {
+                    type: Number
+                }
+            },
+            data() {
+                return {
+                    navList: [],
+                    currentValue: this.value
+                }
+            },
+            methods: {
+                getTab() {
+                    return this.$children.filter(item => {
+                        return item.$options.name === "pane";
+                    })
+                },
+                handleChange(index) {
+                    this.currentValue = this.navList[index].value;
+                    /*  this.navList.forEach(item => {
+                         return item.show = item.value
+                     }); */
+                    this.updateStatus();
+                },
+                updateNav() {
+                    this.navList = [];
+                    let _this = this;
+                    this.getTab().forEach((pane, index) => {
+                        _this.navList.push({
+                            label: pane.label,
+                            value: pane.value || index,
+                            closable: pane.closable
+                        })
+                        if (index === 0) {
+                            if (!_this.currentValue) {
+                                _this.currentValue = pane.name || index;
+                            }
+                        }
+
+                    });
+                    this.updateStatus();
+                },
+                updateStatus() {
+                    this.getTab().forEach(tab => {
+                        tab.show = tab.value === this.currentValue;
+                    })
+                },
+                closePane(index){
+                    let _this = this;
+                    /* let tabList = this.getTab();
+                    this.currentValue = tabList[index].value; */
+                    this.$destory(_this.getTab()[index]);
+                }
+            },
+
+        };
+        let pane = {
+            name: 'pane',
+            template: `
+            <div v-show="show" :label="label" :value="value" v-if="closable">
+               <slot></slot> 
+            </div>
+            `,
+            props: {
+                label: {
+                    type: String,
+                    default: ''
+                },
+                value: {
+                    type: Number
+                },
+                closable: {
+                    type: Boolean,
+                    default: false
+                }
+            },
+            data() {
+                return {
+                    show: true,
+                    show2:true
+                }
+            },
+            methods: {
+                updateNav() {
+                    this.$parent.updateNav();
+                }
+            },
+            watch: {
+                label() {
+                    this.updateNav();
+                }
+            },
+            mounted() {
+                this.updateNav();
+            },
+        };
+        let app = new Vue({
+            el: document.getElementById('app'),
+            data() {
+                return {
+                    activeKey: 1
+                }
+            },
+            components: {
+                Tabs,
+                pane
+            }
+        })
+    </script>
+</body>
+
+</html>

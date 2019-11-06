@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-if="status==1">状态为1</li>
+            <li v-else-if="status==2">状态为2</li>
+            <li v-else>状态为3</li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data() {
+            return {
+                status: 10
+            }
+        },
+    })
+</script>

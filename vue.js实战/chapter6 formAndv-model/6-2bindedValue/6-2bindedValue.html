@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- radio button-->
+        <input type="radio" v-model="picked" :value="value">
+        <label for="">单选按钮</label>
+        <p>{{picked}}</p>
+        <p>{{value}}</p>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data() {
+            return {
+                picked:false,
+                value:123
+            }
+        },
+    })
+</script>

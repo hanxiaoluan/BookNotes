@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div :class="[activeCls,errorCls]"></div>
+        <!-- 也可以用三元表达式来切换class -->
+        <div :class="[isTrue?activeCls:'',errorCls]"></div>
+        <div :class="[{'isActive':isTrue},errorCls]"></div>
+        <div :class=classes2></div>
+    </div>
+</body>
+
+</html>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data() {
+            return {
+                isTrue:false,
+                activeCls: 'activeCls',
+                errorCls: "errorCls",
+                size:'large',
+                disabled:true
+            }
+        },
+        computed: {
+            classes2(){
+                return [
+                    'btn',{
+                        ['btn-'+this.size]:this.size!=='',
+                        ['btn-disabled']:this.disabled
+                    }
+                ]
+            }
+        },
+    })
+</script>
