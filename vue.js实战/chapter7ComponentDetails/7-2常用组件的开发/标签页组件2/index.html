@@ -54,9 +54,8 @@
     <div id="app" v-cloak>
         <tabs v-model="activeKey">
             <pane label="标签一" :value="1" :closable="true">小白</pane>
-            <pane label="标签二" :value="2" :closable="true">是</pane>
+            <pane label="标签二" :value="2" :closable="false">是</pane>
             <pane label="标签三" :value="3" :closable="true">大大大好人</pane>
-
         </tabs>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -70,7 +69,7 @@
                         v-for="(item,index) in navList"
                         @click="handleChange(index)"
                     >{{item.label}}
-                    <button @click="closePane(index)" v-if="item.closable">开启/关闭</button>
+                    <button @click="closePane(index)" v-show="item.closable">开启/关闭</button>
                     </div>
                 </div>
                 <div class="content">
@@ -125,11 +124,14 @@
                         tab.show = tab.value === this.currentValue;
                     })
                 },
-                closePane(index){
-                    let _this = this;
+                closePane(index) {
+                    
                     /* let tabList = this.getTab();
                     this.currentValue = tabList[index].value; */
-                    this.$destory(_this.getTab()[index]);
+                    /*  this.$destory(_this.getTab()[index]); */
+                    /* console.log(this.getTab()[index]);
+                    this.getTab()[index].show = false; */
+                    
                 }
             },
 
@@ -137,7 +139,7 @@
         let pane = {
             name: 'pane',
             template: `
-            <div v-show="show" :label="label" :value="value" v-if="closable">
+            <div v-show="show" :label="label" :value="value">
                <slot></slot> 
             </div>
             `,
@@ -157,7 +159,7 @@
             data() {
                 return {
                     show: true,
-                    show2:true
+                    show2: true
                 }
             },
             methods: {
