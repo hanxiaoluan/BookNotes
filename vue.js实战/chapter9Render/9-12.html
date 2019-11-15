@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ele :list="list"></ele>
+    </div>
+</body>
+
+</html>
+<script>
+    Vue.component('ele', {
+        render(h) {
+            let _this = this,
+                vnodes;
+            if (this.list.length) {
+                vnodes = h('ul', this.list.map(item => {
+                    return h('li', item)
+                }));
+            } else {
+                vnodes = h('p', '暂无聊天内容');
+            }
+            return h('div', [vnodes, h('input', {
+                props: {
+                    value: this.value
+                },
+                attrs: {
+                    placeholder: '输入内容,按回车键发送'
+                },
+                style: {
+                    width: '200px'
+                },
+                on: {
+                    keyup(event) {
+                        if (event.keyCode === 13) {
+                            _this.list.push(event.target.value);
+                            event.target.value = '';
+                        }
+                    },
+                    input(event) {
+                        _this.value = event.target.value;
+                    }
+                }
+            })])
+        },
+        props: {
+            list: {
+                type: Array
+            }
+        }
+    })
+    let app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                list: [],
+                value: ''
+            }
+        },
+    })
+</script>

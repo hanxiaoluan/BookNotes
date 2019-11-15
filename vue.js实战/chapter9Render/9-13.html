@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <smart-item :data="data"></smart-item>
+        <button @click="change('img')">切换为图片组件</button>
+        <button @click="change('video')">切换为视频组件</button>
+        <button @click="change('text')">切换为文本组件</button>
+    </div>
+</body>
+
+</html>
+<script>
+    let ImgItem = {
+        props: ['data'],
+        render(h) {
+            return h('div', [
+                h('p', '图片组件'),
+                h('img', {
+                    attrs: {
+                        src: this.data.url
+                    }
+                })
+            ])
+        },
+    }
+    let VideoItem = {
+        props: ['data'],
+        render(h) {
+            return h('div', [
+                h('p', '视频组件'),
+                h('video', {
+                    attrs: {
+                        src: this.data.url,
+                        controls: 'controls',
+                        autoplay: 'autoplay'
+                    }
+                })
+            ])
+        },
+    }
+    let TextItem = {
+        props: ['data'],
+        render(h) {
+            return h('div', [
+                h('p', '纯文本组件'),
+                h('p', this.data.content)
+            ])
+        },
+    }
+    Vue.component('SmartItem', {
+        functional: true,
+        render(h, context) {
+            //根据传入的数据，智能判断显示哪个组件
+            function getComponent() {
+                let data = context.props.data;
+                console.log(data);
+                if (data.type === 'img') return ImgItem;
+                if (data.type === 'video') return VideoItem;
+                return TextItem;
+            }
+            return h(getComponent(), {
+                props: {
+                    data: context.props.data
+                },
+            }, context.children)
+        },
+        props: {
+            data: {
+                type: Object,
+                required: true
+            }
+        }
+    })
+    let app = new Vue({
+        el: "#app",
+        data: {
+            data: {}
+        },
+        methods: {
+            change(type) {
+                if (type === 'img') {
+                    this.data = {
+                        type: 'img',
+                        url: ""
+                    }
+                } else if (type === 'video') {
+                    this.data = {
+                        type: 'video',
+                        url: ''
+                    }
+                } else {
+                    this.data = {
+                        type: 'text',
+                        content: '这是一段存文本'
+                    }
+                }
+            }
+        },
+        created() {
+            this.change('text');
+
+        },
+    })
+</script>

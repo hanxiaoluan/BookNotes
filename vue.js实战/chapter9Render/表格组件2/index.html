@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../../vue.js"></script>
+   <!--  <script>
+        function getGrade(score) {
+            return score < 60 ? 'C' : score < 80 ? 'B' : 'A';
+        }
+        let students = [{
+            name: 1,
+            score: 84
+        }, {
+            name: 1,
+            score: 58
+        }, {
+            name: 1,
+            score: 90
+        }, {
+            name: 1,
+            score: 69
+        }]
+
+        function groupStudents(students) {
+            let A = students.filter(item => getGrade(item.score) === 'A');
+            let B = students.filter(item => getGrade(item.score) === 'B');
+            let C = students.filter(item => getGrade(item.score) === 'C');
+            return {
+                A: A,
+                B: B,
+                C: C
+            }
+        }
+        console.log(groupStudents(students));
+    </script> -->
+    <link rel="stylesheet" href="./output.css">
+</head>
+
+<body>
+    <div id="app">
+        <v-table :data="data" :columns="columns"></v-table>
+        <button @click="addData">添加数据</button>
+    </div>
+    <script src="./table.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

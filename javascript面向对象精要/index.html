@@ -58,14 +58,14 @@
 
 <body>
     <div id="app">
-        <div class="box" id="box" @mouseover.self="toggle" @mouseleave="toggle2">
+        <div class="box" id="box" @mouseenter="toggle" @mouseleave="toggle2">
             <p>栾晗霄大好人</p>
-            <transition name="goon">
+            
                 <div class="left" v-if="show"></div>
-            </transition>
-            <transition name="goon2">
+           
+         
                 <div class="right" v-if="show"></div>
-            </transition>
+          
             <!-- <button @click="toggle">动画</button> -->
         </div>
         <div class="box" id="box" @mouseover.self="toggle" @mouseleave="toggle2" style="">

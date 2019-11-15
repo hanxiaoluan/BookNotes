@@ -85,7 +85,8 @@
             data() {
                 return {
                     navList: [],
-                    currentValue: this.value
+                    currentValue: this.value,
+                    hideValue:-1
                 }
             },
             methods: {
@@ -96,10 +97,10 @@
                 },
                 handleChange(index) {
                     this.currentValue = this.navList[index].value;
-                    /*  this.navList.forEach(item => {
-                         return item.show = item.value
-                     }); */
                     this.updateStatus();
+                    /* this.getTab().forEach(tab => {
+                        tab.show = false;
+                    }) */
                 },
                 updateNav() {
                     this.navList = [];
@@ -115,23 +116,24 @@
                                 _this.currentValue = pane.name || index;
                             }
                         }
-
                     });
                     this.updateStatus();
                 },
                 updateStatus() {
                     this.getTab().forEach(tab => {
-                        tab.show = tab.value === this.currentValue;
+                        tab.show = tab.value === this.currentValue&&this.hideValue===-1;
                     })
                 },
                 closePane(index) {
-                    
-                    /* let tabList = this.getTab();
-                    this.currentValue = tabList[index].value; */
-                    /*  this.$destory(_this.getTab()[index]); */
-                    /* console.log(this.getTab()[index]);
-                    this.getTab()[index].show = false; */
-                    
+                    let tabs = this.getTab();
+                    let _this = this;
+                   
+                    this.hideValue = this.hideValue===-1?1:-1;
+
+                   /*  tabs[index].show = !tabs[index].show ;
+                    console.log(tabs[index].show);
+                    console.log(this.getTab()); */
+                    /* this.handleChange(index); */
                 }
             },
 
@@ -170,7 +172,8 @@
             watch: {
                 label() {
                     this.updateNav();
-                }
+                },
+
             },
             mounted() {
                 this.updateNav();

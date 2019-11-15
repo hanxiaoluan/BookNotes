@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <anchor :level="2" title="特性">特性</anchor>
+        <script type="text/x-template" id="anchor">
+            <div>
+                <h1 v-if="level===1">
+                    <a :href="'#'+title"><slot></slot></a>
+                </h1>
+                 <h2 v-if="level===2">
+                     <a :href="'#'+title">
+                         <slot></slot>
+                     </a>
+                 </h2>
+                 <h3 v-if="level===3">
+                     <a :href="'#'+title">
+                         <slot></slot>
+                     </a>
+                 </h3>
+                 <h4 v-if="level===4">
+                     <a :href="'#'+title">
+                         <slot></slot>
+                     </a>
+                 </h4>
+                 <h5 v-if="level===5">
+                     <a :href="'#'+title">
+                         <slot></slot>
+                     </a>
+                 </h5>
+                 <h6 v-if="level===6">
+                     <a :href="'#'+title">
+                         <slot></slot>
+                     </a>
+                 </h6>
+            </div>
+        </script>
+    </div>
+</body>
+
+</html>
+<script>
+    Vue.component("anchor",{
+        template:'#anchor',
+        props:{
+            level:{
+                type:Number,
+                required:true
+            },
+            title:{
+                type:String,
+                default:''
+            }
+        }
+    })
+    let app = new Vue({
+        el:"#app"
+    })
+</script>

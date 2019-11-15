@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-focus>
+        <div v-test:msg.a.b="message"></div>
+        <div v-dy="{msg:'hello',name:'Aresn'}"></div>
+    </div>
+</body>
+</html>
+<script>
+Vue.directive('focus',{
+    inserted(el){
+        el.focus();
+    }
+} )
+Vue.directive('test',{
+    bind(el,binding,vnode){
+        let keys = [];
+        for(let i in vnode){
+            keys.push(i);
+        }
+        el.innerHTML = `
+            name:${binding.name}<br />
+            value:${binding.value}<br />
+            expression:${binding.expression}<br />
+            argument:${binding.arg}<br />
+            modifiers:${JSON.stringify(binding.modifiers)}<br />
+            vnode keys:${keys.join(",")}
+        `
+    }
+})
+Vue.directive('dy',{
+    bind(el,binding,vnode){
+        console.log(binding.value.msg);
+        console.log(binding.value.name);
+    }
+})
+let app = new Vue({
+    el:"#app",
+    data() {
+        return {
+            message:"small white"
+        }
+    },
+})
+</script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ele></ele>
+    </div>
+</body>
+</html>
+<script>
+"use strict";
+let Child = {
+    render(h) {
+        return h('p','text');
+    },
+}
+Vue.component('ele',{
+    render(h) {
+        return h('div',Array.apply(null,{length:5}).map(()=>{
+            return h(Child);
+        }))
+    },
+})
+let app = new Vue({
+    el:'#app'
+})
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ele :list="list"></ele>
+    </div>
+</body>
+</html>
+<script>
+Vue.component('ele',{
+    render(h) {
+        let nodes = [];
+        for(let i=0;i <this.list.length;i++){
+            nodes.push(h('li',this.list[i].name));
+        }
+        return h('ul',nodes);
+    },
+    props:{
+        list:{
+            type:Array,
+        }
+    }
+})
+let app = new Vue({
+    el:'#app',
+    data() {
+        return {
+            list:[
+                {
+                    name:'luan',
+                    value:1
+                },
+                {
+                    name:'han',
+                    value:2
+                },
+                {
+                    name:'xiao',
+                    value:3
+                }
+            ]
+        }
+    },
+})
+</script>

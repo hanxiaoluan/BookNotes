@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ele :list="list" v-show="show"></ele>
+        <button @click="handleClick">togglr</button>
+    </div>
+</body>
+</html>
+<script>
+Vue.component('ele',{
+    render(h) {
+        if(this.list.length){
+            return h('ul',this.list.map(item=>{
+                return h('li',item);
+            }))
+        }else{
+            return h('p','列表为空');
+        }
+    },
+    props:{
+        list:{
+            type:Array,
+            default(){
+                return [];
+            }
+        }
+    }
+})
+let app = new Vue({
+    el:'#app',
+    data() {
+        return {
+            list:[
+                'luan','han','xiao'
+            ],
+            show:true
+        }
+
+    },
+    methods: {
+        handleClick(){
+            this.show = !this.show;
+        }
+    },
+})
+</script>

@@ -1,0 +1,30 @@
+[v-cloak] {
+  display: none; }
+
+table {
+  width: 100%;
+  margin-bottom: 24px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  border: 1px solid #e9e9e9; }
+  table th {
+    background: #f7f7f7;
+    color: #5c6b77;
+    font-weight: 100;
+    white-space: nowrap; }
+  table td,
+  table th {
+    padding: 8px 16px;
+    border: 1px solid #e9e9e9;
+    text-align: center; }
+  table a {
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer; }
+    table a.on {
+      color: #3399ff; }
+    table a:hover {
+      color: #3399ff; }
+
+/*# sourceMappingURL=output.css.map */
