@@ -1,25 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            width: 500px;
+            margin: 50px auto;
+        }
+
+        .message {
+            width: 450px;
+            text-align: center;
+            /*  margin: 0 auto; */
+        }
+
+        .inputContainer {
+            width: 100%;
+            margin: 20px auto;
+        }
+
+        .inputContainer span {
+            font-weight: 800;
+            font-size: 18px;
+            display: inline-block;
+            vertical-align: top;
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+
+        }
+
+        .textareaContainer span {
+            font-weight: 800;
+            font-size: 18px;
+            display: inline-block;
+            vertical-align: top;
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+
+        }
+
+        input,
+        textarea {
+            width: 300px;
+            height: 32px;
+            padding: 0 6px;
+            color: #657180;
+            border: 1px solid #d7dde4;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        textarea {
+            height: 60px;
+            padding: 4px 6px;
+        }
+
+        textarea:focus,
+        input:focus {
+            border: 1px solid #3399ff;
+        }
+
+        .message button {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 4px;
+            border: 1px solid #39f;
+            color: #fff;
+            background: #39f;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .list {
+            margin-top: 50px;
+            width: 450px;
+        }
+
+        .list-item {
+            padding: 10px;
+            border-bottom: 1px solid #e3e8ee;
+            overflow: hidden;
+        }
+
+        .list-item span {
+            display: block;
+            width: 60px;
+            float: left;
+            color: #39f;
+        }
+
+        .list-item a {
+            color: #9ea7b4;
+            cursor: pointer;
+            float: right;
+        }
+
+        .list-item a:hover {
+            color: #39f;
+        }
+    </style>
     <script src="../../../vue.js"></script>
 </head>
+
 <body>
     <div id="app" v-cloak>
-        <v-input v-model="username"></v-input>
-        <v-textarea v-model="message"></v-textarea>
-        <button></button>
-        <v-list></v-list>
+
         <div class="message">
-            
+            <v-input v-model="username"></v-input>
+            <v-textarea v-model="message" ref="message"></v-textarea>
+            <button @click="handleSend">发布</button>
         </div>
+        <v-list :list="list" @reply="reply"></v-list>
+
     </div>
     <script src="./input.js"></script>
     <script src="./textarea.js"></script>
     <script src="./list.js"></script>
     <script src="./index.js"></script>
 </body>
+
 </html>

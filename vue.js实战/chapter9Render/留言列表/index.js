@@ -14,6 +14,12 @@ let app = new Vue({
                 message: this.message
             });
             this.message = '';
+        },
+        reply(index) {
+            console.log(index)
+            let name = this.list[index].name;
+            this.message = '回复@' + name + ":";
+            this.$refs.message.focus();
         }
     },
 })

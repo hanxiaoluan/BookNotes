@@ -1,30 +1,47 @@
 Vue.component('vTextarea', {
     render(h) {
         let _this = this;
-        return h('div', {}, [
-            h('label', '留言内容'),
+        return h('div', {
+            'class': 'textareaContainer'
+        }, [
+            h('span', '留言内容:'),
             h('textarea', {
                 attrs: {
                     placeholder: '请输入留言内容'
                 },
-               /*  domProps: {
-                  value:  
-                }, */
-                props: {
-                    value:this.value
+                /*  domProps: {
+                   value:  
+                 }, */
+                domProps: {
+                    value: this.value
                 },
+                /* props: {
+                    value:this.value
+                }, */
+                ref: 'message',
                 on: {
-                    input: function(event){
-                        _this.value = event.target.value;
+                    input: function (event) {
+                        //_this.value = event.target.value;
                         _this.$emit('input', event.target.value);
                     }
                 }
             })
         ]);
     },
-    data() {
+    /* data() {
         return {
-            value:''
+            value: ''
+        }
+    }, */
+    props: {
+        value: {
+            type: String,
+            default:''
+        }
+    },
+    methods: {
+        focus() {
+            this.$refs.message.focus();
         }
     },
 })

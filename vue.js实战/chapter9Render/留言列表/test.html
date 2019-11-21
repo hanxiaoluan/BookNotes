@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <v-input v-model="user"></v-input>
+    </div>
+    <script>
+        Vue.component('vInput', {
+            render(h) {
+                let _this = this;
+
+                return h('input', {
+                    /* domProps: {
+                        value: _this.something
+                    }, */
+                    props:{
+                        value:_this.something
+                    },
+                    on: {
+                        input: function (event) {
+                            _this.something = event.target.value
+                            _this.$emit('input',event.target.value)
+                        }
+                    }
+                })
+            },
+            data() {
+                return {
+                    something: ''
+                }
+            },
+        })
+        let app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    user:''
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
