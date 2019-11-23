@@ -19,4 +19,7 @@ export function preDay(timestamp = (new Date()).getTime() + 86400000, num = 0) {
     return `${year}${month}${day}`;
 }
 
-export const titleTime = (time) => `${time.substr(4, 2)}月${time.substr(6)}日`
+export const titleTime = val => {
+    console.log(val);
+    return `${val.toString().substr(4, 2)}月${val.toString().substr(6)}日`
+}

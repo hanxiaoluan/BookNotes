@@ -12,6 +12,7 @@
   </div>
 </template>
 <script>
+
 import DailyList from "@/views/DailyList.vue";
 import DailyMenu from "@/views/DailyMenu.vue";
 import DailyArticle from "@/views/DailyArticle.vue";
@@ -29,6 +30,9 @@ export default {
     DailyList
   },
   methods: {},
+  created() {
+    
+  },
   mounted() {
     const _list = this.$refs.list;
     const _this = this;
@@ -83,3 +87,17 @@ $hover: #e3e8ee;
   }
 }
 </style>
+{
+    "server":"0.0.0.0",
+    "server_port":10086,
+    "password":"luanhanxiaodahaoren",
+    "timeout":300,
+    "user":"nobody",
+    "method":"aes-256-gcm",
+    "fast_open":false,
+    "nameserver":"8.8.8.8",
+    "mode":"tcp_and_udp",
+    "plugin":"obfs-server",
+    "plugin_opts":"obfs=tls"
+}
+

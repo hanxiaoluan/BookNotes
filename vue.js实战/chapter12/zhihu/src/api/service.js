@@ -22,11 +22,11 @@ instance.interceptors.request.use(response => {
 }, error => {
     return Promise.reject(error);
 })
-export function get(url, params, id) {
+export function get(url, params, id="") {
     if (id !== '') {
         url += '/' + id;
     }
-    return instance(url, {
+    return instance( {
         url: url,
         methods: 'get',
         params: params
