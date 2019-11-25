@@ -7,14 +7,21 @@
     </div>
     <counter :number="number" />
     {{number}}
+    <br />
+    <item v-for="(item, index) in 6" :key="index" :id="item" />
+    <content-item></content-item>
     <router-view />
   </div>
 </template>
 <script>
 import Counter from "../src/views/Counter";
+import Item from "@/views/Item";
+import ContentItem from "@/views/content";
 export default {
   components: {
-    Counter
+    Counter,
+    Item,
+    ContentItem
   },
   data() {
     return {

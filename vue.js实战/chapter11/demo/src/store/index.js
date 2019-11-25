@@ -9,7 +9,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     count: 0,
-    list: [1, 2, 3, 4, 5, 6, 7]
+    list: [1, 2, 3, 4, 5, 6, 7],
+    id: ""
   },
   mutations: {
     increment(state, params) {
@@ -18,7 +19,9 @@ export default new Vuex.Store({
     decrease(state) {
       state.count--;
     },
-
+    passId(state, id) {
+      state.id = id;
+    }
   },
   actions: {
     asyncIncrement(context) {
@@ -34,6 +37,11 @@ export default new Vuex.Store({
 
       // context.commit('increment');
 
+    },
+    passId({
+      commit
+    }, id) {
+      commit('passId', id);
     }
   },
   modules: {},
