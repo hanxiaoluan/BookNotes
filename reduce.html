@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript中reduce方法详解</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //arr.reduce(callback[,initialValue])
+  /**
+    参数：
+     callback（一个在数组中每一项调用的函数，接受四个参数）
+       ·previousValue 上次一调用函数时的返回值，或者初始值
+       ·currentValue 当前正在处理的数组元素
+       ·currentIndex 当前正在处理的数组下标
+       ·array 调用reduce（）方法的数组
+    initialValue（可选的测试值，作为第一次调用回调函数时传给previousValue的值）
+  */
+
+  let arr = [1, 2, 3, 4],
+    sum = 0;
+  arr.forEach(element => {
+    sum += element;
+  });
+  console.log(sum);
+  let sum1;
+  sum1 = arr.reduce((pre, cur, index, arr) => {
+    return pre + cur;
+  });
+  console.log(sum1);
+  let sum2;
+  sum2 = arr.reduce((pre, cur, index, arr) => {
+    return pre + cur;
+  }, -10);
+  console.log(sum2);
+</script>
